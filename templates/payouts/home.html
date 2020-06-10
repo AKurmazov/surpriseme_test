@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3>Hello {{ user.first_name }}! Your balance is <b>{{ user.revenue }}</b></h3>
+        <form action="/" method="post">
+            {% csrf_token %}
+            {% for error in errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <p>It seems that you're not authenticated. Please <a href="{% url 'login' %}">login</a></p>
+    {% endif %}
+{% endblock %}
