@@ -18,7 +18,7 @@ Now, you can access the server at `127.0.0.1:8000`
 
 # Populating DB with the testing data
 1. Using the admin page, create several users
-2. Active the django shell
+2. Activate the django shell
 ```
 $ python manage.py shell
 ```
