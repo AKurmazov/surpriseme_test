@@ -26,11 +26,5 @@ class Payout(models.Model):
     created_date = models.DateTimeField(verbose_name="created date", auto_now_add=True)
     processed_date = models.DateTimeField(verbose_name="processed date", null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        if self.is_processed:
-            self.author.revenue -= self.amount
-            self.author.save()
-        super(Payout, self).save(*args, **kwargs)
-
     def __str__(self):
         return f"Payout #{self.pk} - {self.author} at {self.created_date}"

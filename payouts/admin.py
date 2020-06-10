@@ -27,6 +27,8 @@ class CustomPayoutAdmin(admin.ModelAdmin):
         if "pay-action" in request.POST:
             obj.is_processed = True
             obj.processed_date = timezone.now()
+            obj.author.revenue -= obj.amount
+            obj.author.save()
             if obj.account_number:
                 requests.post("https://webhook.site/36693e00-8f59-4f7b-9a85-1d1e7ddde4d4", json={
                     "account": obj.account_number,
