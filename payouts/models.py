@@ -10,7 +10,7 @@ class Payment(models.Model):
     created_date = models.DateTimeField(verbose_name="created date", auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        self.author.revenue = 0.3 * self.amount
+        self.author.revenue += 0.3 * self.amount
         self.author.save()
         super(Payment, self).save(*args, **kwargs)
 
